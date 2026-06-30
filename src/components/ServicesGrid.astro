@@ -1,0 +1,36 @@
+---
+import { SERVICES } from '../data/services';
+---
+
+<section class="border-y border-white/5 py-20 md:py-28">
+  <div class="site-container">
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-12">
+      <div>
+        <p class="font-display text-xs uppercase tracking-widest text-neon-lime mb-3">Mes prestations</p>
+        <h2 class="font-display text-3xl md:text-5xl text-white uppercase max-w-2xl">Quatre leviers pour faire entrer plus de demandes</h2>
+      </div>
+      <p class="max-w-md text-white/70">
+        Je propose des services que je maîtrise, avec une approche claire et adaptée à vos objectifs.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {SERVICES.map((service, i) => (
+        <a
+          href={`/${service.slug}/`}
+          class="group block bg-white/5 border border-white/10 p-7 md:p-8 transition-all hover:border-neon-lime/50 hover:bg-white/10"
+        >
+          <div class="flex items-baseline justify-between mb-6">
+            <span class="font-display text-xs text-white/40 tracking-widest">0{i + 1}</span>
+            <span class="font-display text-xs text-neon-lime opacity-0 group-hover:opacity-100 transition-opacity">VOIR →</span>
+          </div>
+          <h3 class="font-display text-xl md:text-2xl text-white uppercase mb-2">{service.shortTitle}</h3>
+          <p class="text-white/60 text-sm mb-4">{service.tagline}</p>
+          <ul class="space-y-1.5 text-sm text-white/80">
+            {service.benefits.slice(0, 3).map((b) => (<li class="flex gap-2"><span class="text-neon-lime">→</span>{b}</li>))}
+          </ul>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { PROJECTS } from '../../data/projects';
+import { SITE } from '../../data/site';
+
+const title = "Cas clients & réalisations | JOKTA";
+const description = "Sélection de projets SEO, acquisition et création de sites menés par JOKTA pour transformer la visibilité en demandes entrantes.";
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  url: `${SITE.url}/cas-clients/`,
+  hasPart: PROJECTS.map((p) => ({
+    '@type': 'CreativeWork',
+    name: p.title,
+    url: `${SITE.url}/cas-clients/${p.slug}/`,
+    description: p.excerpt,
+  })),
+};
+---
+
+<Layout title={title} description={description} jsonLd={collectionSchema}>
+  <section class="border-b border-white/5 py-20 md:py-28">
+    <div class="site-container">
+      <p class="font-display text-xs uppercase tracking-widest text-neon-lime mb-3">Cas clients</p>
+      <h1 class="font-display text-4xl md:text-6xl text-white uppercase max-w-3xl">Une sélection de collaborations</h1>
+      <p class="mt-6 max-w-2xl text-xl text-white/80">
+        Des projets où la stratégie a rencontré l'exécution. Cliquez pour voir les détails.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="site-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {PROJECTS.map((p) => (
+          <a
+            href={`/cas-clients/${p.slug}/`}
+            class="group block bg-white/5 border border-white/10 p-7 md:p-8 hover:border-neon-lime/50 hover:bg-white/10 transition-all"
+          >
+            <div class="flex items-baseline justify-between mb-4">
+              <span class="font-display text-xs uppercase tracking-widest text-white/40">{p.period}</span>
+              <span class="font-display text-xs text-neon-lime opacity-0 group-hover:opacity-100 transition-opacity">VOIR →</span>
+            </div>
+            <h2 class="font-display text-2xl md:text-3xl text-white uppercase mb-2">{p.title}</h2>
+            <p class="text-white/60 text-sm mb-3">{p.sector}</p>
+            <p class="text-white/80 text-sm leading-relaxed">{p.excerpt}</p>
+            <div class="mt-4 pt-4 border-t border-white/10 text-xs font-display uppercase tracking-widest text-white/50">{p.type}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner title="Prêt à lancer votre projet ?" description="Chaque grande histoire commence par une décision. Prenez la bonne." />
+</Layout>

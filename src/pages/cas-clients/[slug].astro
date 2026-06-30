@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { PROJECTS } from '../../data/projects';
+import { SITE } from '../../data/site';
+
+export function getStaticPaths() {
+  return PROJECTS.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+
+const title = `${project.title} – Cas client | JOKTA`;
+const description = project.excerpt;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: project.title,
+  description: project.excerpt,
+  url: `${SITE.url}/cas-clients/${project.slug}/`,
+  author: { '@type': 'Person', name: SITE.ownerName },
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  mainEntityOfPage: `${SITE.url}/cas-clients/${project.slug}/`,
+};
+
+const reviewSchema = project.testimonial
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Review',
+      itemReviewed: {
+        '@type': 'ProfessionalService',
+        name: SITE.name,
+        url: SITE.url,
+      },
+      author: { '@type': 'Person', name: project.testimonial.author },
+      reviewBody: project.testimonial.quote,
+      reviewRating: { '@type': 'Rating', ratingValue: 5, bestRating: 5 },
+    }
+  : null;
+
+const jsonLd = reviewSchema ? [articleSchema, reviewSchema] : articleSchema;
+---
+
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <article>
+    <header class="border-b border-white/5 py-20 md:py-28">
+      <div class="site-container">
+        <a href="/cas-clients/" class="text-sm text-white/60 hover:text-neon-lime mb-6 inline-block">← Retour aux cas clients</a>
+        <p class="font-display text-xs uppercase tracking-widest text-neon-lime mb-3">{project.sector}</p>
+        <h1 class="font-display text-4xl md:text-6xl text-white uppercase">{project.title}</h1>
+        <p class="mt-6 max-w-2xl text-xl text-white/80">{project.excerpt}</p>
+        <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+          <div>
+            <div class="font-display text-xs uppercase tracking-widest text-white/50 mb-1">Période</div>
+            <div class="text-white">{project.period}</div>
+          </div>
+          <div>
+            <div class="font-display text-xs uppercase tracking-widest text-white/50 mb-1">Type</div>
+            <div class="text-white">{project.type}</div>
+          </div>
+          {project.url && (
+            <div>
+              <div class="font-display text-xs uppercase tracking-widest text-white/50 mb-1">Site</div>
+              <a href={project.url} target="_blank" rel="noopener noreferrer" class="text-neon-lime hover:underline">Voir le site →</a>
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
+
+    <section class="border-b border-white/5 py-16">
+      <div class="site-container grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6">
+        <h2 class="font-display text-xs uppercase tracking-widest text-neon-lime">Contexte</h2>
+        <p class="text-white/85 leading-relaxed max-w-3xl">{project.context}</p>
+      </div>
+    </section>
+
+    <section class="border-b border-white/5 py-16">
+      <div class="site-container grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6">
+        <h2 class="font-display text-xs uppercase tracking-widest text-neon-lime">Objectif</h2>
+        <p class="text-white/85 leading-relaxed max-w-3xl">{project.objective}</p>
+      </div>
+    </section>
+
+    <section class="border-b border-white/5 py-16">
+      <div class="site-container grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6">
+        <h2 class="font-display text-xs uppercase tracking-widest text-neon-lime">Actions menées</h2>
+        <ul class="space-y-3 max-w-3xl">
+          {project.actions.map((action) => (
+            <li class="flex gap-3 text-white/85"><span class="text-neon-lime">→</span>{action}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="border-b border-white/5 py-16">
+      <div class="site-container grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6">
+        <h2 class="font-display text-xs uppercase tracking-widest text-neon-lime">Résultats</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl">
+          {project.results.map((r) => (
+            <div class="bg-white/5 border border-white/10 p-5">
+              <div class="font-display text-xs uppercase tracking-widest text-white/50 mb-2">{r.label}</div>
+              <div class="font-display text-2xl text-neon-lime">{r.value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {project.testimonial && (
+      <section class="border-b border-white/5 py-16">
+        <div class="site-container grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6">
+          <h2 class="font-display text-xs uppercase tracking-widest text-neon-lime">Témoignage</h2>
+          <figure class="max-w-3xl">
+            <blockquote class="text-xl text-white/90 leading-relaxed">« {project.testimonial.quote} »</blockquote>
+            <figcaption class="mt-4 font-display text-white uppercase">{project.testimonial.author}</figcaption>
+          </figure>
+        </div>
+      </section>
+    )}
+  </article>
+
+  <CtaBanner title="Et si on faisait pareil chez vous ?" />
+</Layout>

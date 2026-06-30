@@ -1,0 +1,104 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import JsonLd from '../components/JsonLd.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import { SITE } from '../data/site';
+
+type Props = {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+};
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogImage = SITE.defaultOgImage,
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+const fullOg = ogImage.startsWith('http') ? ogImage : `${SITE.url}${ogImage}`;
+
+// Schema.org Organization always present
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: SITE.name,
+  url: SITE.url,
+  email: SITE.email,
+  telephone: SITE.phone,
+  image: fullOg,
+  description: "Freelance SEO à Rennes. Stratégie SEO, SEA et création de sites web orientés conversion.",
+  areaServed: ['Rennes', 'Bretagne', 'France'],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: SITE.city,
+    addressRegion: SITE.region,
+    addressCountry: 'FR',
+  },
+  founder: {
+    '@type': 'Person',
+    name: SITE.ownerName,
+  },
+  sameAs: [SITE.social.linkedin, SITE.social.instagram],
+};
+
+// Inject 'Search Console' verification meta if env provided at build time
+const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || '';
+
+// Astro Google Site Verification meta (placeholder)
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex,nofollow" /> : <meta name="robots" content="index,follow" />}
+    {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
+    <meta name="theme-color" content="#050505" />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={fullOg} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOg} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Archivo+Black&display=swap" />
+
+    <JsonLd data={organizationSchema} />
+    {jsonLd && <JsonLd data={jsonLd} />}
+  </head>
+  <body class="bg-deep-black text-off-white">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-neon-lime text-deep-black px-3 py-2">Aller au contenu</a>
+    <Navbar />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <CookieBanner />
+  </body>
+</html>

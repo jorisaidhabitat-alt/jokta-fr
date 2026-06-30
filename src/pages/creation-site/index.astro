@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServicePage from '../../components/ServicePage.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SERVICES } from '../../data/services';
+import { SITE } from '../../data/site';
+
+const service = SERVICES.find((s) => s.slug === 'creation-site')!;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.title,
+  url: `${SITE.url}/creation-site/`,
+  description: service.description,
+  provider: { '@type': 'ProfessionalService', name: SITE.name, url: SITE.url },
+  areaServed: ['Rennes', 'Bretagne', 'France'],
+};
+
+const title = "Création de site web à Rennes | JOKTA";
+const description = "Sites web clairs, rapides et orientés conversion. Design UI/UX sur mesure, développement Webflow ou WordPress, optimisation mobile et SEO-ready.";
+---
+
+<Layout title={title} description={description} jsonLd={serviceSchema}>
+  <ServicePage service={service} />
+  <CtaBanner title="Un site qui ne vous ressemble plus ?" description="Parlons de votre refonte ou de votre création." />
+</Layout>

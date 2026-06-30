@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SITE } from '../../data/site';
+
+type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  body: string;
+};
+
+export async function getStaticPaths() {
+  const posts: Post[] = [
+    {
+      slug: 'vibecoding',
+      title: 'Le vibecoding, ou comment construire vite sans sacrifier la qualité',
+      excerpt: "Retour d'expérience sur la méthode de développement rapide qui combine prototypage et exécution maîtrisée.",
+      date: '2026-06-04',
+      body: `Le vibecoding désigne une approche de développement où l'on construit rapidement en s'appuyant sur des outils modernes (IA, frameworks, composants prêts à l'emploi) tout en gardant une exigence forte sur la qualité finale.
+
+L'idée n'est pas de bâcler. C'est plutôt de réduire au maximum le temps entre l'intention et la première version utilisable, puis d'itérer.
+
+Pour que ça marche, trois conditions sont essentielles : un cadre clair en amont, un cycle de feedback court, et la capacité à supprimer ce qui ne sert pas.`,
+    },
+  ];
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const dateFormat = new Intl.DateTimeFormat('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.excerpt,
+  datePublished: post.date,
+  author: { '@type': 'Person', name: SITE.ownerName },
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  mainEntityOfPage: `${SITE.url}/blog/${post.slug}/`,
+};
+---
+
+<Layout title={`${post.title} | JOKTA`} description={post.excerpt} jsonLd={articleSchema}>
+  <article class="py-20 md:py-28">
+    <div class="site-container max-w-3xl">
+      <a href="/blog/" class="text-sm text-white/60 hover:text-neon-lime mb-6 inline-block">← Retour au blog</a>
+      <p class="font-display text-xs uppercase tracking-widest text-white/50 mb-3">
+        <time datetime={post.date}>{dateFormat.format(new Date(post.date))}</time>
+      </p>
+      <h1 class="font-display text-4xl md:text-5xl text-white uppercase mb-8">{post.title}</h1>
+      <div class="prose prose-invert max-w-none text-white/85 leading-relaxed">
+        {post.body.split('\n\n').map((p) => (<p class="mb-4">{p}</p>))}
+      </div>
+    </div>
+  </article>
+
+  <CtaBanner />
+</Layout>

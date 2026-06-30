@@ -1,0 +1,55 @@
+---
+import { NAV } from '../data/site';
+
+const path = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 bg-deep-black/90 backdrop-blur border-b border-white/10">
+  <div class="site-container flex items-center justify-between py-4 md:py-5">
+    <a href="/" class="flex items-center gap-2 text-white font-display text-xl tracking-tight">
+      JOKTA<span class="text-neon-lime">.</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6 text-sm">
+      {NAV.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'transition-colors hover:text-neon-lime',
+            path.startsWith(item.href) ? 'text-neon-lime' : 'text-white',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <a
+      href="/contact/"
+      class="hidden sm:inline-flex items-center bg-neon-lime px-4 py-2 font-display text-xs md:text-sm uppercase text-deep-black hover:bg-white transition-colors"
+    >
+      Passer à l'action
+    </a>
+
+    <button id="nav-toggle" aria-label="Menu" class="md:hidden text-white">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+
+  <nav id="nav-mobile" class="hidden md:hidden border-t border-white/10 bg-deep-black">
+    <div class="site-container py-4 flex flex-col gap-3 text-sm">
+      {NAV.map((item) => (
+        <a href={item.href} class="text-white hover:text-neon-lime">{item.label}</a>
+      ))}
+      <a href="/contact/" class="mt-2 inline-flex items-center bg-neon-lime px-4 py-2 font-display text-xs uppercase text-deep-black">
+        Passer à l'action
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const btn = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-mobile');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

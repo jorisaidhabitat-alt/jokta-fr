@@ -1,0 +1,42 @@
+<svg width="1800" height="800" viewBox="0 0 1800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1800" height="800" fill="#EEF3FA"/>
+  <rect x="12" y="18" width="1776" height="764" rx="24" fill="#FFFFFF"/>
+  <text x="150" y="74" fill="#333333" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">REQUETES</text>
+  <text x="390" y="74" fill="#888888" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="600">PAGES</text>
+  <text x="560" y="74" fill="#888888" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="600">PAYS</text>
+  <text x="695" y="74" fill="#888888" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="600">APPAREILS</text>
+  <text x="930" y="74" fill="#888888" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="600">APPARENCE DANS LES RESULTATS DE RECHERCHE</text>
+  <text x="1630" y="74" fill="#888888" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="600">JOURS</text>
+  <line x1="92" y1="124" x2="332" y2="124" stroke="#333333" stroke-width="4"/>
+  <line x1="12" y1="126" x2="1788" y2="126" stroke="#E0E5EC" stroke-width="2"/>
+  <line x1="12" y1="224" x2="1788" y2="224" stroke="#E0E5EC" stroke-width="2"/>
+  <line x1="12" y1="330" x2="1788" y2="330" stroke="#E0E5EC" stroke-width="2"/>
+  <line x1="12" y1="424" x2="1788" y2="424" stroke="#E0E5EC" stroke-width="2"/>
+  <line x1="12" y1="518" x2="1788" y2="518" stroke="#E0E5EC" stroke-width="2"/>
+  <line x1="12" y1="612" x2="1788" y2="612" stroke="#E0E5EC" stroke-width="2"/>
+  <line x1="12" y1="706" x2="1788" y2="706" stroke="#E0E5EC" stroke-width="2"/>
+
+  <text x="52" y="286" fill="#777777" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600">Requetes les plus frequentes</text>
+  <text x="1450" y="286" fill="#777777" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600">Clics</text>
+  <text x="1660" y="286" fill="#333333" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Impressions</text>
+
+  <text x="52" y="384" fill="#333333" font-family="Arial, Helvetica, sans-serif" font-size="24">coach professionnel rennes</text>
+  <text x="1480" y="384" fill="#357AE8" font-family="Arial, Helvetica, sans-serif" font-size="24">1</text>
+  <text x="1700" y="384" fill="#8D3CD1" font-family="Arial, Helvetica, sans-serif" font-size="24">609</text>
+
+  <text x="52" y="478" fill="#333333" font-family="Arial, Helvetica, sans-serif" font-size="24">coaching professionnel rennes</text>
+  <text x="1480" y="478" fill="#357AE8" font-family="Arial, Helvetica, sans-serif" font-size="24">0</text>
+  <text x="1700" y="478" fill="#8D3CD1" font-family="Arial, Helvetica, sans-serif" font-size="24">415</text>
+
+  <text x="52" y="572" fill="#333333" font-family="Arial, Helvetica, sans-serif" font-size="24">catapulse</text>
+  <text x="1470" y="572" fill="#357AE8" font-family="Arial, Helvetica, sans-serif" font-size="24">44</text>
+  <text x="1700" y="572" fill="#8D3CD1" font-family="Arial, Helvetica, sans-serif" font-size="24">180</text>
+
+  <text x="52" y="666" fill="#333333" font-family="Arial, Helvetica, sans-serif" font-size="24">takapulse</text>
+  <text x="1480" y="666" fill="#357AE8" font-family="Arial, Helvetica, sans-serif" font-size="24">0</text>
+  <text x="1700" y="666" fill="#8D3CD1" font-family="Arial, Helvetica, sans-serif" font-size="24">116</text>
+
+  <text x="52" y="760" fill="#333333" font-family="Arial, Helvetica, sans-serif" font-size="24">coach dirigeants a rennes</text>
+  <text x="1480" y="760" fill="#357AE8" font-family="Arial, Helvetica, sans-serif" font-size="24">0</text>
+  <text x="1708" y="760" fill="#8D3CD1" font-family="Arial, Helvetica, sans-serif" font-size="24">91</text>
+</svg>

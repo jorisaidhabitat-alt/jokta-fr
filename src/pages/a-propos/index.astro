@@ -1,0 +1,106 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SITE } from '../../data/site';
+
+const title = "À propos – Joris Balluais, freelance SEO à Rennes | JOKTA";
+const description = "Le parcours, la méthode et les valeurs de Joris, freelance SEO à Rennes derrière JOKTA. Rigueur, proximité et travail bien fait.";
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.ownerName,
+  jobTitle: 'Freelance SEO',
+  description: "Joris, 22 ans, Rennais. Freelance SEO et création de sites web.",
+  url: `${SITE.url}/a-propos/`,
+  email: SITE.email,
+  telephone: SITE.phone,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: SITE.city,
+    addressRegion: SITE.region,
+    addressCountry: 'FR',
+  },
+  alumniOf: [
+    { '@type': 'EducationalOrganization', name: 'Master Stratégie Digitale & Transformation' },
+    { '@type': 'EducationalOrganization', name: 'Licence E-commerce & Marketing Numérique' },
+    { '@type': 'EducationalOrganization', name: 'BTS Commerce International' },
+  ],
+  sameAs: [SITE.social.linkedin, SITE.social.instagram],
+};
+
+const milestones = [
+  { period: '2024 - 2026', title: 'Freelance Web & SEO', org: 'Indépendant', detail: "Création de l'activité JOKTA. Accompagnement SEO, SEA et création de sites pour TPE et PME." },
+  { period: '2023 - 2024', title: 'Consultant Digital en Agence', org: 'Agence digitale rennaise', detail: "Gestion opérationnelle de comptes clients, stratégies SEO/SEA avancées, refontes de sites." },
+  { period: '2024 - 2026', title: 'Master Stratégie Digitale & Transformation', org: 'École Supérieure', detail: "Spécialisation en pilotage de projet complexe et transformation numérique des entreprises." },
+  { period: '2022 - 2023', title: 'Licence E-commerce & Marketing Numérique', org: 'Université', detail: "Focus sur l'acquisition de trafic, le SEO et l'UX design." },
+  { period: '2021 - 2023', title: 'Fondateur agence Social Media', org: 'Entrepreneur (à 19 ans)', detail: "Première activité. Accompagnement de commerçants locaux sur Instagram et Facebook." },
+  { period: '2020 - 2022', title: 'BTS Commerce International', org: 'Lycée', detail: "Bases en marketing, négociation et commerce." },
+];
+
+const values = [
+  { name: 'Proximité', body: "Je prends le temps de comprendre votre métier, vos clients et votre contexte pour proposer des solutions cohérentes." },
+  { name: 'Implication', body: "Je m'implique dans chaque projet avec sérieux, en cherchant des solutions utiles et bien exécutées." },
+  { name: 'Disponibilité', body: "Je reste réactif, joignable et disponible pour faire avancer les projets dans de bonnes conditions." },
+];
+---
+
+<Layout title={title} description={description} jsonLd={personSchema}>
+  <section class="border-b border-white/5 py-20 md:py-28">
+    <div class="site-container grid grid-cols-1 md:grid-cols-[1fr_280px] gap-10 items-start">
+      <div>
+        <p class="font-display text-xs uppercase tracking-widest text-neon-lime mb-3">À propos</p>
+        <h1 class="font-display text-4xl md:text-6xl text-white uppercase max-w-3xl">Joris Balluais, freelance SEO à Rennes</h1>
+        <p class="mt-6 max-w-2xl text-xl text-white/80">
+          22 ans, Rennais. J'aime le digital, mais je privilégie surtout le travail bien fait, la clarté et la régularité.
+        </p>
+        <p class="mt-6 max-w-3xl text-white/70 leading-relaxed">
+          Mon objectif est de proposer des actions utiles, adaptées à votre activité et à vos objectifs. Pas de promesse magique, pas de discours marketing creux : un cadre clair, un travail suivi et des améliorations mesurables dans le temps.
+        </p>
+      </div>
+      <img
+        src="/img/joris-portrait.webp"
+        alt="Portrait de Joris Balluais, freelance SEO à Rennes"
+        width="280"
+        height="280"
+        loading="eager"
+        decoding="async"
+        class="w-full aspect-square object-cover border border-white/10 grayscale"
+      />
+    </div>
+  </section>
+
+  <section class="border-b border-white/5 py-20">
+    <div class="site-container">
+      <h2 class="font-display text-3xl md:text-5xl text-white uppercase mb-12">Mes valeurs</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {values.map((v) => (
+          <div class="bg-white/5 border border-white/10 p-7">
+            <div class="font-display text-xs uppercase tracking-widest text-neon-lime mb-3">{v.name}</div>
+            <p class="text-white/85">{v.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-white/5 py-20">
+    <div class="site-container">
+      <h2 class="font-display text-3xl md:text-5xl text-white uppercase mb-12">Mon parcours</h2>
+      <ol class="space-y-8">
+        {milestones.map((m) => (
+          <li class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-4 border-l-2 border-neon-lime/30 pl-6">
+            <div class="font-display text-xs uppercase tracking-widest text-white/50">{m.period}</div>
+            <div>
+              <div class="font-display text-xl text-white uppercase">{m.title}</div>
+              <div class="text-sm text-white/60 mb-2">{m.org}</div>
+              <p class="text-white/80">{m.detail}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <CtaBanner title="On se parle ?" description="Un échange de 20 minutes pour comprendre vos enjeux et voir si on peut travailler ensemble." />
+</Layout>

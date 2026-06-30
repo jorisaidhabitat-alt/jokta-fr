@@ -1,0 +1,27 @@
+---
+import { TESTIMONIALS } from '../data/testimonials';
+---
+
+<section class="py-20 md:py-28 border-b border-white/5">
+  <div class="site-container">
+    <p class="font-display text-xs uppercase tracking-widest text-neon-lime mb-3">Témoignages clients</p>
+    <h2 class="font-display text-3xl md:text-5xl text-white uppercase mb-12 max-w-3xl">Ce qu'en disent les clients</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {TESTIMONIALS.map((t) => (
+        <figure class="bg-white/5 border border-white/10 p-7 flex flex-col">
+          <div class="flex gap-1 text-neon-lime mb-4" aria-label={`${t.rating} étoiles sur 5`}>
+            {Array.from({ length: t.rating }).map(() => <span>★</span>)}
+          </div>
+          <blockquote class="text-white/85 text-sm leading-relaxed flex-1">
+            « {t.quote} »
+          </blockquote>
+          <figcaption class="mt-5 pt-5 border-t border-white/10 text-sm">
+            <div class="font-display text-white uppercase">{t.author}</div>
+            <div class="text-white/50">{t.role}</div>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

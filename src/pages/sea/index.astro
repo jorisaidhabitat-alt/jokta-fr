@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServicePage from '../../components/ServicePage.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SERVICES } from '../../data/services';
+import { SITE } from '../../data/site';
+
+const service = SERVICES.find((s) => s.slug === 'sea')!;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.title,
+  url: `${SITE.url}/sea/`,
+  description: service.description,
+  provider: { '@type': 'ProfessionalService', name: SITE.name, url: SITE.url },
+  areaServed: ['Rennes', 'Bretagne', 'France'],
+};
+
+const title = "Campagnes SEA Google & Social Ads à Rennes | JOKTA";
+const description = "Génération de contacts qualifiés via Google Ads et Social Ads. Structure de compte, copywriting d'annonces, tracking avancé et A/B testing par un freelance à Rennes.";
+---
+
+<Layout title={title} description={description} jsonLd={serviceSchema}>
+  <ServicePage service={service} />
+  <CtaBanner title="Vous voulez tester un canal payant ?" />
+</Layout>

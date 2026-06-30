@@ -1,0 +1,47 @@
+---
+import { SITE, NAV } from '../data/site';
+---
+
+<footer class="border-t border-white/10 mt-24 py-12">
+  <div class="site-container grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div class="md:col-span-2">
+      <a href="/" class="text-white font-display text-xl">JOKTA<span class="text-neon-lime">.</span></a>
+      <p class="mt-3 text-sm text-white/70 max-w-md">
+        Freelance SEO à Rennes. J'aide les entreprises à générer plus de demandes entrantes grâce au SEO, au SEA et à des sites web pensés pour convertir.
+      </p>
+      <div class="mt-4 text-sm text-white/70 space-y-1">
+        <div><a href={`mailto:${SITE.email}`} class="hover:text-neon-lime">{SITE.email}</a></div>
+        <div><a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class="hover:text-neon-lime">{SITE.phoneDisplay}</a></div>
+        <div>{SITE.city}, {SITE.region}</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="font-display text-xs uppercase tracking-widest text-white/50 mb-3">Navigation</div>
+      <ul class="space-y-2 text-sm">
+        {NAV.map((item) => (
+          <li><a href={item.href} class="text-white/80 hover:text-neon-lime">{item.label}</a></li>
+        ))}
+        <li><a href="/contact/" class="text-white/80 hover:text-neon-lime">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="font-display text-xs uppercase tracking-widest text-white/50 mb-3">Légal</div>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/mentions-legales/" class="text-white/80 hover:text-neon-lime">Mentions légales</a></li>
+        <li><a href="/politique-confidentialite/" class="text-white/80 hover:text-neon-lime">Politique de confidentialité</a></li>
+      </ul>
+      <div class="font-display text-xs uppercase tracking-widest text-white/50 mb-3 mt-6">Réseaux</div>
+      <ul class="space-y-2 text-sm">
+        <li><a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-neon-lime">LinkedIn</a></li>
+        <li><a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-neon-lime">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="site-container mt-10 pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between gap-2 text-xs text-white/40">
+    <div>&copy; {new Date().getFullYear()} {SITE.name} &mdash; {SITE.ownerName}</div>
+    <div>Site conçu et développé par {SITE.name}</div>
+  </div>
+</footer>

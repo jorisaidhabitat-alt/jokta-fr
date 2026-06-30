@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { SITE } from '../../data/site';
+
+const title = "Contact – Discutons de votre projet | JOKTA";
+const description = "Parlez-moi de votre projet, de votre site ou de vos objectifs d'acquisition. Réponse sous 24h, du lundi au vendredi.";
+
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: title,
+  url: `${SITE.url}/contact/`,
+  about: {
+    '@type': 'ProfessionalService',
+    name: SITE.name,
+    email: SITE.email,
+    telephone: SITE.phone,
+  },
+};
+---
+
+<Layout title={title} description={description} jsonLd={contactSchema}>
+  <section class="border-b border-white/5 py-20 md:py-28">
+    <div class="site-container">
+      <p class="font-display text-xs uppercase tracking-widest text-neon-lime mb-3">Contact</p>
+      <h1 class="font-display text-4xl md:text-6xl text-white uppercase max-w-3xl">Discutons de votre projet</h1>
+      <p class="mt-6 max-w-2xl text-xl text-white/80">
+        Une question, un projet, un audit ? Choisissez le canal qui vous convient. Je réponds sous 24h en jours ouvrés.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="site-container grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div class="space-y-8">
+        <div>
+          <div class="font-display text-xs uppercase tracking-widest text-neon-lime mb-2">E-mail</div>
+          <a href={`mailto:${SITE.email}`} class="text-2xl text-white hover:text-neon-lime">{SITE.email}</a>
+        </div>
+        <div>
+          <div class="font-display text-xs uppercase tracking-widest text-neon-lime mb-2">Téléphone</div>
+          <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class="text-2xl text-white hover:text-neon-lime">{SITE.phoneDisplay}</a>
+        </div>
+        <div>
+          <div class="font-display text-xs uppercase tracking-widest text-neon-lime mb-2">Zone</div>
+          <p class="text-white">{SITE.city}, {SITE.region} — interventions en remote partout en France</p>
+        </div>
+        <div>
+          <div class="font-display text-xs uppercase tracking-widest text-neon-lime mb-2">Délai de réponse</div>
+          <p class="text-white">Sous 24 heures du lundi au vendredi</p>
+        </div>
+      </div>
+
+      <form
+        method="POST"
+        action={`mailto:${SITE.email}`}
+        enctype="text/plain"
+        class="bg-white/5 border border-white/10 p-7 space-y-5"
+      >
+        <div>
+          <label for="name" class="block font-display text-xs uppercase tracking-widest text-white/60 mb-2">Nom</label>
+          <input id="name" name="name" type="text" required class="w-full bg-deep-black border border-white/15 px-4 py-3 text-white focus:border-neon-lime focus:outline-none" />
+        </div>
+        <div>
+          <label for="email" class="block font-display text-xs uppercase tracking-widest text-white/60 mb-2">E-mail</label>
+          <input id="email" name="email" type="email" required class="w-full bg-deep-black border border-white/15 px-4 py-3 text-white focus:border-neon-lime focus:outline-none" />
+        </div>
+        <div>
+          <label for="company" class="block font-display text-xs uppercase tracking-widest text-white/60 mb-2">Entreprise</label>
+          <input id="company" name="company" type="text" class="w-full bg-deep-black border border-white/15 px-4 py-3 text-white focus:border-neon-lime focus:outline-none" />
+        </div>
+        <div>
+          <label for="message" class="block font-display text-xs uppercase tracking-widest text-white/60 mb-2">Votre projet</label>
+          <textarea id="message" name="message" rows="5" required class="w-full bg-deep-black border border-white/15 px-4 py-3 text-white focus:border-neon-lime focus:outline-none"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-neon-lime text-deep-black font-display uppercase text-sm py-4 hover:bg-white transition-colors">
+          Envoyer ma demande
+        </button>
+        <p class="text-xs text-white/50">
+          En envoyant ce formulaire, vous acceptez d'être recontacté pour étudier votre demande. Vos données sont traitées conformément à la <a href="/politique-confidentialite/" class="underline hover:text-neon-lime">politique de confidentialité</a>.
+        </p>
+      </form>
+    </div>
+  </section>
+</Layout>

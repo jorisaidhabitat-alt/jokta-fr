@@ -1,0 +1,41 @@
+---
+// Tarteaucitron banner loader (CDN). Configure trackers in inline init below.
+---
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AmauriC/tarteaucitron.js@1.20.1/css/tarteaucitron.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/AmauriC/tarteaucitron.js@1.20.1/tarteaucitron.min.js" is:inline></script>
+<script is:inline>
+  // Tarteaucitron init — RGPD compliant cookie banner
+  window.addEventListener('DOMContentLoaded', function () {
+    if (typeof tarteaucitron === 'undefined') return;
+    tarteaucitron.init({
+      privacyUrl: '/politique-confidentialite/',
+      bodyPosition: 'bottom',
+      hashtag: '#tarteaucitron',
+      cookieName: 'tarteaucitron',
+      orientation: 'middle',
+      groupServices: false,
+      showAlertSmall: false,
+      cookieslist: false,
+      closePopup: false,
+      showIcon: true,
+      iconPosition: 'BottomRight',
+      adblocker: false,
+      DenyAllCta: true,
+      AcceptAllCta: true,
+      highPrivacy: true,
+      handleBrowserDNTRequest: false,
+      removeCredit: true,
+      moreInfoLink: true,
+      useExternalCss: false,
+      readmoreLink: '/politique-confidentialite/',
+      mandatory: true,
+      mandatoryCta: true,
+    });
+
+    // Google Analytics 4 — placeholder, remplace par ton ID GA4 (G-XXXXXXXXXX)
+    tarteaucitron.user.gtagUa = 'G-XXXXXXXXXX';
+    tarteaucitron.user.gtagMore = function () { /* dataLayer.push(...) */ };
+    (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+  });
+</script>

@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { SITE } from '../../data/site';
+
+const title = "Mentions légales | JOKTA";
+const description = "Mentions légales du site jokta.fr — éditeur, hébergeur, propriété intellectuelle.";
+---
+
+<Layout title={title} description={description} noindex>
+  <section class="py-20 md:py-28">
+    <div class="site-container max-w-3xl">
+      <h1 class="font-display text-4xl md:text-5xl text-white uppercase mb-10">Mentions légales</h1>
+
+      <article class="space-y-10 text-white/85 leading-relaxed">
+        <section>
+          <h2 class="font-display text-xl uppercase text-neon-lime mb-3">Éditeur du site</h2>
+          <p>
+            Le site {SITE.url} est édité par&nbsp;:<br />
+            <strong>{SITE.ownerName}</strong>, entreprise individuelle exerçant sous le nom commercial <strong>{SITE.name}</strong>.<br />
+            Adresse&nbsp;: [À COMPLÉTER — adresse postale]<br />
+            SIREN&nbsp;: [À COMPLÉTER — numéro SIREN]<br />
+            Numéro de TVA intracommunautaire&nbsp;: [À COMPLÉTER si applicable]<br />
+            E-mail&nbsp;: <a href={`mailto:${SITE.email}`} class="text-neon-lime hover:underline">{SITE.email}</a><br />
+            Téléphone&nbsp;: <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class="text-neon-lime hover:underline">{SITE.phoneDisplay}</a>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl uppercase text-neon-lime mb-3">Directeur de la publication</h2>
+          <p>{SITE.ownerName}</p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl uppercase text-neon-lime mb-3">Hébergeur</h2>
+          <p>
+            <strong>Vercel Inc.</strong><br />
+            440 N Barranca Ave #4133<br />
+            Covina, CA 91723, États-Unis<br />
+            Site&nbsp;: <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="text-neon-lime hover:underline">vercel.com</a>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl uppercase text-neon-lime mb-3">Propriété intellectuelle</h2>
+          <p>
+            L'ensemble du contenu du site (textes, images, vidéos, identité visuelle, code) est la propriété exclusive de {SITE.name}, sauf mention contraire. Toute reproduction, représentation, modification, publication, adaptation, totale ou partielle des éléments du site, par quelque procédé que ce soit, est interdite sans l'autorisation écrite préalable.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl uppercase text-neon-lime mb-3">Données personnelles</h2>
+          <p>
+            Les informations recueillies sur ce site via les formulaires de contact sont traitées conformément à notre <a href="/politique-confidentialite/" class="text-neon-lime hover:underline">politique de confidentialité</a>. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données vous concernant. Pour exercer ces droits, contactez-nous à <a href={`mailto:${SITE.email}`} class="text-neon-lime hover:underline">{SITE.email}</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl uppercase text-neon-lime mb-3">Cookies</h2>
+          <p>
+            Ce site utilise des cookies pour mesurer son audience et améliorer son fonctionnement. Vous pouvez à tout moment modifier vos préférences via le bandeau de gestion des cookies.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-xl uppercase text-neon-lime mb-3">Crédits</h2>
+          <p>
+            Conception et développement&nbsp;: {SITE.name}.<br />
+            Photographies et illustrations&nbsp;: {SITE.name}, sauf mention contraire.
+          </p>
+        </section>
+
+        <p class="text-sm text-white/50 italic">Dernière mise à jour&nbsp;: {new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}.</p>
+      </article>
+    </div>
+  </section>
+</Layout>
