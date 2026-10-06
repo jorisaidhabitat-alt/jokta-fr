@@ -17,6 +17,30 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: 'slowmundo',
+    title: 'SLOWMUNDO',
+    client: 'Alexis Jupin',
+    sector: 'Agence de voyage bas carbone',
+    period: '2026',
+    type: 'Création complète du site',
+    url: 'https://slowmundo.fr/',
+    excerpt: "Agence de voyage bas carbone fondée par Alexis Jupin : voyages responsables, itinéraires sans avion et expériences locales.",
+    context: "Alexis Jupin lançait Slowmundo, une agence de voyage bas carbone, et avait besoin d'un site qui porte à la fois le projet entrepreneurial, la promesse écologique et la crédibilité d'une offre commerciale. L'enjeu était de ne pas tomber dans le greenwashing esthétique : traduire une vraie démarche bas carbone en un parcours clair pour des voyageurs qui veulent comprendre comment on part différemment.",
+    objective: "Construire une identité digitale complète pour une nouvelle agence : poser l'univers de marque, structurer l'offre de voyages, rassurer sur la démarche bas carbone et permettre les premières demandes de voyage dès la mise en ligne.",
+    actions: [
+      "Direction artistique et charte graphique sur mesure",
+      "Architecture du site et rédaction des pages",
+      "Mise en avant des engagements bas carbone et de la méthodologie",
+      "Structure SEO-ready et balisage pour les requêtes « voyage bas carbone » et destinations",
+      "Mise en ligne et formation à l'autonomie éditoriale",
+    ],
+    results: [
+      { label: 'Livraison', value: '22 septembre 2026' },
+      { label: 'Périmètre', value: 'Site complet + charte' },
+      { label: 'Approche', value: "Design au service de l'engagement" },
+    ],
+  },
+  {
     slug: 'catapulse',
     title: 'CATAPULSE',
     client: 'Catapulse',
