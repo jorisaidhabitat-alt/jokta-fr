@@ -20,7 +20,7 @@ export const NAV = [
   { label: 'SEA', href: '/sea/' },
   { label: 'Création site', href: '/creation-site/' },
   { label: 'Audit SEO', href: '/audit-seo/' },
-  { label: 'Cas clients', href: '/cas-clients/' },
+  { label: 'Réalisations', href: '/realisations/' },
   { label: 'À propos', href: '/a-propos/' },
   { label: 'Blog', href: '/blog/' },
 ];

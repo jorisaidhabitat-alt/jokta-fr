@@ -13,7 +13,7 @@ export function getStaticPaths() {
 
 const { project } = Astro.props;
 
-const title = `${project.title} – Cas client | JOKTA`;
+const title = `${project.title} – Réalisation | JOKTA`;
 const description = project.excerpt;
 
 const articleSchema = {
@@ -21,10 +21,10 @@ const articleSchema = {
   '@type': 'Article',
   headline: project.title,
   description: project.excerpt,
-  url: `${SITE.url}/cas-clients/${project.slug}/`,
+  url: `${SITE.url}/realisations/${project.slug}/`,
   author: { '@type': 'Person', name: SITE.ownerName },
   publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-  mainEntityOfPage: `${SITE.url}/cas-clients/${project.slug}/`,
+  mainEntityOfPage: `${SITE.url}/realisations/${project.slug}/`,
 };
 
 const reviewSchema = project.testimonial
@@ -49,7 +49,7 @@ const jsonLd = reviewSchema ? [articleSchema, reviewSchema] : articleSchema;
   <article>
     <header class="border-b border-white/5 py-20 md:py-28">
       <div class="site-container">
-        <a href="/cas-clients/" class="text-sm text-white/60 hover:text-neon-lime mb-6 inline-block">← Retour aux cas clients</a>
+        <a href="/realisations/" class="text-sm text-white/60 hover:text-neon-lime mb-6 inline-block">← Retour aux réalisations</a>
         <p class="font-display text-xs uppercase tracking-widest text-neon-lime mb-3">{project.sector}</p>
         <h1 class="font-display text-4xl md:text-6xl text-white uppercase">{project.title}</h1>
         <p class="mt-6 max-w-2xl text-xl text-white/80">{project.excerpt}</p>
