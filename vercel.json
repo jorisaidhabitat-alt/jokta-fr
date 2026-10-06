@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    { "source": "/services", "destination": "/seo/", "permanent": true },
+    { "source": "/services/", "destination": "/seo/", "permanent": true },
+    { "source": "/about", "destination": "/a-propos/", "permanent": true },
+    { "source": "/about/", "destination": "/a-propos/", "permanent": true },
+    { "source": "/cas-clients", "destination": "/realisations/", "permanent": true },
+    { "source": "/cas-clients/:slug*", "destination": "/realisations/:slug*", "permanent": true }
+  ]
+}
